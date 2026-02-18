@@ -119,7 +119,73 @@ Design a **single zero-shot prompt** that takes a user’s persona configuration
 
 ### Your Solution for problem 2:
 
-You need to put your solution here.
+### Zero-Shot Prompt Design
+
+The following prompt is designed to generate 3 distinct LinkedIn post drafts in a single API call. 
+It takes user persona configuration and a topic as input and returns structured JSON output 
+containing three stylistically different LinkedIn posts.
+
+### Final Zero-Shot Prompt
+
+You are a professional LinkedIn content strategist.
+
+Your task is to generate 3 distinct LinkedIn post drafts in different writing styles 
+based on the provided user persona and topic.
+
+INPUT:
+- User Persona:
+    - Name:
+    - Role:
+    - Industry:
+    - Experience Level:
+    - Tone Preference (e.g., professional, storytelling, bold, educational):
+    - Target Audience:
+    - Content Goal (e.g., engagement, authority building, hiring, lead generation):
+
+- Topic:
+    - Main topic of the post
+
+INSTRUCTIONS:
+
+1. Generate exactly 3 LinkedIn post drafts.
+2. Each draft must follow a different style:
+   - Post 1: Educational / Value-driven
+   - Post 2: Storytelling / Personal insight
+   - Post 3: Bold / Opinion-based / Contrarian
+3. Each post must:
+   - Be 150–250 words
+   - Include a strong hook in the first 2 lines
+   - Use short readable paragraphs
+   - End with a soft call-to-action
+4. Do NOT include explanations outside the JSON.
+5. Output must be strictly valid JSON.
+6. Do not add extra commentary.
+
+OUTPUT FORMAT (STRICT JSON):
+
+{
+  "post_1": {
+    "style": "Educational",
+    "hook": "string",
+    "body": "string",
+    "cta": "string"
+  },
+  "post_2": {
+    "style": "Storytelling",
+    "hook": "string",
+    "body": "string",
+    "cta": "string"
+  },
+  "post_3": {
+    "style": "Bold",
+    "hook": "string",
+    "body": "string",
+    "cta": "string"
+  }
+}
+
+This prompt ensures structured output, stylistic variation, and reliability in a single API call without fine-tuning.
+
 
 ## Problem 3: **Smart DOCX Template → Bulk DOCX/PDF Generator (Proposal + Prompt)**
 
