@@ -26,7 +26,81 @@ No code required. We want a **clear, practical proposal** with architecture and 
 
 ### Your Solution for problem 1:
 
-You need to put your solution here.
+Solution Overview:
+To solve the Video-to-Notes problem, we design an automated batch-processing pipeline that takes long videos from a folder and generates a structured summary package including Summary.md, highlight clips, and screenshots.
+
+The system will work in fully automated batch mode and process all videos inside the input directory without manual intervention.
+
+### Proposed Processing Pipeline
+
+The system will process each video in the following steps:
+
+1. Detect all video files inside the input folder.
+2. Extract audio from each video using FFmpeg.
+3. Convert extracted audio into text using a speech-to-text model (e.g., Whisper).
+4. Split the transcript into manageable chunks for large videos (3–4 hours).
+5. Send transcript chunks to an LLM to generate:
+   - High-level summary
+   - Key highlights with timestamps
+   - Action items / takeaways
+6. Use returned timestamps to:
+   - Cut highlight clips from the original video
+   - Capture screenshots at key moments
+7. Generate a structured `Summary.md` file.
+8. Save all outputs in a per-video folder structure.
+
+### Approach 1: Fully Cloud-Based Solution
+
+All processing (transcription + summarization) is done using external APIs.
+
+Pros:
+- High accuracy
+- Easy to implement
+- Scalable
+
+Cons:
+- High cost for long videos
+- Data privacy concerns
+- API rate limits
+
+
+### Approach 2: Hybrid Solution (Local + Cloud LLM)
+
+Media processing is done locally. Transcription and summarization use cloud APIs.
+
+Pros:
+- Balanced cost
+- Better control
+- Scalable
+- Practical for production
+
+Cons:
+- Some API dependency
+- Slightly more complex setup
+
+
+### Approach 3: Fully Offline (Open-Source Models)
+
+Everything runs locally using open-source models.
+
+Pros:
+- No API cost
+- Full data privacy
+- No external dependency
+
+Cons:
+- Requires GPU
+- Lower summarization quality
+- Complex setup
+
+### Recommended Approach
+
+The Hybrid approach is recommended because it balances cost, scalability, accuracy, and privacy. 
+
+Local media processing ensures efficient handling of large video files, while cloud-based LLMs provide high-quality summarization and structured outputs.
+
+This approach is practical for production use and supports batch processing of long videos.
+
 
 ## Problem 2: **Zero-Shot Prompt to generate 3 LinkedIn Post**
 
