@@ -26,7 +26,8 @@ No code required. We want a **clear, practical proposal** with architecture and 
 
 ### Your Solution for problem 1:
 
-Solution Overview:
+### Solution Overview
+
 To solve the Video-to-Notes problem, we design an automated batch-processing pipeline that takes long videos from a folder and generates a structured summary package including Summary.md, highlight clips, and screenshots.
 
 The system will work in fully automated batch mode and process all videos inside the input directory without manual intervention.
