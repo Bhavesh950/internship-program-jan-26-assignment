@@ -50,6 +50,14 @@ The system will process each video in the following steps:
 7. Generate a structured `Summary.md` file.
 8. Save all outputs in a per-video folder structure.
 
+### Handling Large Videos & Batch Mode
+
+- The system processes videos sequentially to avoid memory overload.
+- Large transcripts are chunked before sending to the LLM to avoid token limits.
+- Failed processing steps are logged and retried.
+- Processing metadata (duration, processed date, status) is stored for tracking.
+
+
 ### Approach 1: Fully Cloud-Based Solution
 
 All processing (transcription + summarization) is done using external APIs.
