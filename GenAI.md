@@ -317,4 +317,122 @@ Create a **small, clear architecture proposal** (no code, no prompts) describing
 
 ### Your Solution for problem 4:
 
-You need to put your solution here.
+### Proposed System Architecture
+
+The system is divided into two major layers:
+
+1. Series Setup Layer (Reusable Configuration)
+2. Episode Generation Layer (Per-Episode Processing)
+
+#### 1. Series Setup Layer (Series Bible)
+
+This layer stores reusable character and world configuration.
+
+Components:
+
+- Character Manager:
+  - Stores character reference images
+  - Personality traits
+  - Speaking style rules
+  - Behavioral constraints
+  - Visual consistency notes (clothing, age, expressions)
+
+- Relationship Engine:
+  - Defines relationships (friend, rival, parent-child, mentor)
+  - Stores interaction tone rules
+
+- World Settings Module:
+  - Location / environment
+  - Recurring themes
+  - Series tone (comedy, drama, motivational)
+
+All data is stored as a structured JSON-based “Series Bible”.
+
+#### 2. Episode Generation Layer (Per-Episode Processing)
+
+This layer generates one complete 5-minute episode based on the Series Bible and user input.
+
+Components:
+
+- Episode Input Module:
+  - Short story prompt (situation + conflict + outcome)
+  - Selected characters (full cast or subset)
+  - Tone (comedy, drama, motivational, slice-of-life)
+  - Duration target (~5 minutes)
+  - Language & format (9:16 / 16:9)
+
+- Script Generator (LLM-based):
+  - Expands short prompt into:
+      - Scene-by-scene breakdown
+      - Character dialogues
+      - Narration (if required)
+  - Ensures personality and relationship consistency
+  - Controls pacing to fit ~5 minutes
+
+- Scene Planner:
+  - Determines number of scenes
+  - Estimates time per scene
+  - Generates storyboard / shot list
+
+- Visual Asset Generator:
+  - Generates prompts for:
+      - Character visuals
+      - Background settings
+  - Maintains visual consistency using character reference data
+
+- Audio Planner:
+  - Voice lines per character
+  - Narration segments
+  - Background music cues
+
+#### 3. Consistency & Control Engine
+
+To maintain character and relationship consistency across episodes:
+
+- Character Lock System:
+  - Reuses stored character reference images.
+  - Enforces personality traits and speaking style rules.
+  - Prevents behavior that contradicts defined relationships.
+
+- Relationship Validator:
+  - Ensures dialogues align with relationship type.
+  - Example: Rivals should not behave like close friends unless story justifies it.
+
+- Duration Controller:
+  - Controls total word count and scene pacing.
+  - Estimates runtime based on dialogue length and narration speed.
+  - Adjusts scene count to match ~5-minute target.
+#### 4. Rendering & Output Layer
+
+- Script + Scene Output:
+  - Final episode script
+  - Scene breakdown
+  - Visual prompts
+  - Voiceover lines
+
+- Video Assembly Module:
+  - Combine generated visuals + character voices + background music
+  - Align timing with script pacing
+  - Export final video (9:16 or 16:9)
+
+- Output Package:
+  - Final video file (optional)
+  - Production-ready assets (script + storyboard + prompts)
+#### 5. Iteration & Regeneration System
+
+- User can:
+  - Edit story prompt
+  - Swap characters
+  - Modify tone
+  - Regenerate specific scenes only
+
+- System preserves:
+  - Character consistency
+  - Relationship rules
+  - Visual style
+  - 
+### Final Recommendation
+
+This modular architecture ensures character consistency, scalable episode generation, and controlled pacing. 
+
+By separating Series Setup and Episode Processing, the system enables reusable characters and flexible storytelling while maintaining high-quality production output.
